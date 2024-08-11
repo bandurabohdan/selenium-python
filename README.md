@@ -29,7 +29,7 @@ This repository contains automation scripts for web testing using Selenium with 
 3. Install the dependencies:
 
     ```bash
-    pip install
+    pip install -r requirements.txt
     ```
 
 ## Report
