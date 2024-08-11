@@ -1,4 +1,5 @@
 from typing import Union
+import allure
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -11,6 +12,7 @@ class BasePage:
   def __init__(self, driver: WebDriver) -> None:
     self.driver = driver
 
+  @allure.step('Navigating to {link}')
   def navigate_to(self, link: str):
     self.driver.get(link)
 
@@ -43,6 +45,7 @@ class BasePage:
 
     return element
 
+  @allure.step('Click on element {selector}')
   def click(self, selector: Union[str, WebElement]) -> None:
     if type(selector) is not str:
       selector.click()
@@ -51,6 +54,7 @@ class BasePage:
     element = self.get_element(selector)
     element.click()
 
+  @allure.step('Type in element {selector}')
   def type(self, selector: Union[str, WebElement], text: str) -> None:
     if type(selector) is not str:
       selector.send_keys(text)
@@ -59,6 +63,7 @@ class BasePage:
     element = self.get_element(selector)
     element.send_keys(text)
 
+  @allure.step('Getting text from element {selector}')
   def get_text(self, selector: Union[str, WebElement]) -> str:
     element = None
     result = None

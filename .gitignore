@@ -88,3 +88,4 @@ venv.bak/
 # Selenium specific
 failed_screenshots/
 .selenium/
+allure-results/

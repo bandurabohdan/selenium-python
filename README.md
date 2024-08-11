@@ -46,15 +46,27 @@ To run the tests, use the following command:
 pytest -s -v
 ```
 
+To run the tests with allure-report, use the following command:
+
+```bash
+pytest --alluredir=allure-results
+```
+
 ### Generating Allure Reports
 
 To generate an Allure report, use the following command:
 
 ```bash
-
+allure generate allure-results -o allure-report
 ```
 
-Ensure that the `allure-commandline` package is installed for generating the reports.
+Or for immediately open it in browser use, the following command:
+
+```bash
+allure serve allure-results
+```
+
+Ensure that the `allure-pytest` package and `allure` are installed for generating the reports.
 
 ## GitHub Actions
 
