@@ -86,5 +86,5 @@ venv.bak/
 *.log
 
 # Selenium specific
-selenium-screenshots/
+failed_screenshots/
 .selenium/

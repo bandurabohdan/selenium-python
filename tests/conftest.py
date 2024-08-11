@@ -1,4 +1,5 @@
 import pytest
+import time
 import os
 
 from Factories.DriverFactory import get_driver
@@ -24,4 +25,20 @@ def page_factory(request):
 
   yield page_factory
 
+  if request.node.rep_call.failed:
+
+    screenshot_dir = './failed_screenshots'
+
+    if not os.path.exists(screenshot_dir):
+      os.makedirs(screenshot_dir)
+
+    screenshot_title = f"{test_title}_{time.time()}.png"
+    driver.save_screenshot(f"{screenshot_dir}/{screenshot_title}")
+
   driver.quit()
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
